@@ -1,0 +1,9 @@
+This is a simple text file.
+
+It contains a few lines of text.
+
+Let's see how many words are in this file.
+
+There are k words in this file.
+
+143 33
