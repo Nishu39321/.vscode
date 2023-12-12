@@ -1,27 +1,32 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <limits.h>
 
-struct student_info{
-    char name[50];
-    int chem, phy, maths;
-};
-void func(struct student_info);
 int main() {
-    int n;
-    scanf("%d",&n);
-struct student_info arr[n];
-for(int i=0;i<n;i++){
-    scanf("%s %d %d %d",arr[i].name,&arr[i].chem,&arr[i].phy,&arr[i].maths);
-}
-for(int i=0;i<n;i++){
-   func(arr[i]);
-}
+    int q;
+    scanf("%d", &q);
+    int Q = q;
+    long long int no = 0;
+
+    while (q > 0) {
+        no = no + 5;
+        for (int i = Q; i >= 1; --i) {
+            long long int m = 1;
+            for (int j = 0; j < i; ++j) {
+                m *= 5;
+            }
+            if (no % m == 0) {
+                q = q - i;
+                break;
+            }
+        }
+    }
+
+    if (q != 0) {
+        printf("No solution");
+        return 0;
+    }
+
+    printf("%lli", no);
 
     return 0;
-}
-void func(struct stdent_info input){
-    printf("%s ",input.name);
-    float percent;
-    percent=(input.maths+input.phy+input.chem)/3;
-    printf("%.2f\n",percent);
-    
 }

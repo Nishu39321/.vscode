@@ -96,8 +96,20 @@ int check_valid(char (*arr)[8], char x, int row, int col) {  //checks sandwich c
     }
     return 0;
 }
-
-int func(char (*arr)[8],char x,int row,int col,int m,int n,int k){
+void DisplayBoard(char (*a)[8]){
+     printf("\033[0m");
+             printf("     1    2    3    4    5    6    7    8   \n");  //prints the final board
+         printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
+         for(int i=0;i<8;i++){
+            printf("%d ",i+1);
+        for(int j=0;j<8;j++){
+            printf("| %c  ",a[i][j]);
+            }
+            printf("|\n");
+             printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
+        }
+}
+int func(char (*arr)[8],char x,int row,int col,int m,int n,int k,int *count){
   int j=col+n;
   int i=row+m;
           if((i+m)>=0&&(i+m)<8&&(j+n)>=0&&(j+n)<8){
@@ -109,12 +121,17 @@ int func(char (*arr)[8],char x,int row,int col,int m,int n,int k){
             if(k==0){
             flip(&arr[i][j]);
              }
+            (*count)++;
             return 1;
             }
           else if(arr[i+m][j+n]!=x){
-            if(func(arr,x,i,j,m,n,k)==1){
+            if(func(arr,x,i,j,m,n,k,count)!=0){
             if(k==0){
             flip(&arr[i][j]);
+          }
+          (*count)++;
+          if(k>=2){
+            return *count;
           }
             return 1;
           }
@@ -163,27 +180,42 @@ int main() {
           printf("\n\n%s's Turn (O)\n",play2);
           printf("\033[0m");
         }
-         printf("\033[0m");  //part which prints the box
-         printf("     1    2    3    4    5    6    7    8   \n");
-         printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
-         for(int i=0;i<8;i++){
-            printf("%d ",i+1);
-            for(int j=0;j<8;j++){
-                printf("| %c  ",a[i][j]);
-                }
-            printf("|\n");
-             printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
-
-        }
+         DisplayBoard(a);
         printf("\033[32m");
         printf("Enter your input (row col): ");   //input part which takes the place where x or o will be chosen to be placed
         printf("\033[0m");
         scanf("%d %d",&row,&col);
+        if(row==0&&col==0){
+            int S1,S0,M,N;
+            S0=-5;
+            for(int i=0;i<8;i++){
+                for(int j=0;j<8;j++){
+                    if(a[i][j]==' '){
+            int A1=func(a,x,i,j,1,0,2,0),    //row check direction in right
+            B1=func(a,x,i,j,-1,0,2,0),//row check direction in left
+            C1=func(a,x,i,j,0,1,2,0), //column check in direction of positive y
+            D1=func(a,x,i,j,0,-1,2,0),//column check in direction of negative y
+            E1=func(a,x,i,j,1,1,2,0), //diagonally northeast
+            F1=func(a,x,i,j,-1,-1,2,0), //diagonally south-west
+            G1=func(a,x,i,j,1,-1,2,0), //diagonally south-east
+            H1=func(a,x,i,j,-1,1,2,0); //diagonally north-west
+           S1=A1+B1+C1+D1+E1+F1+G1+H1;
+                 if(S0<S1){
+                    S0=S1;
+                  M=i+1;
+                  N=j+1;
+                 }
+        }
+        }
+        }
+        printf("%d %d\n",M,N);
+         printf("\033[32m");
+        printf("Enter your input (row col): ");   //input part which takes the place where x or o will be chosen to be placed
+        printf("\033[0m");
+        scanf("%d %d",&row,&col);
+        }
          row--;
          col--;
-
-
-
         if (row>=0&&row<8&&col>=0&&col<8&&a[row][col]==' '){   //condition to increase turn
             a[row][col] = x;
             turn++;
@@ -194,14 +226,14 @@ int main() {
           printf("\033[0m");
                   continue;
                    } //eight conditions to check sandwich and flip if possible
-        int A=func(a,x,row,col,1,0,0),    //row check direction in right
-            B=func(a,x,row,col,-1,0,0),//row check direction in left
-            C=func(a,x,row,col,0,1,0), //column check in direction of positive y
-            D=func(a,x,row,col,0,-1,0),//column check in direction of negative y
-            E=func(a,x,row,col,1,1,0), //diagonally northeast
-            F=func(a,x,row,col,-1,-1,0), //diagonally south-west
-            G=func(a,x,row,col,1,-1,0), //diagonally south-east
-            H=func(a,x,row,col,-1,1,0); //diagonally north-west
+        int A=func(a,x,row,col,1,0,0,0),    //row check direction in right
+            B=func(a,x,row,col,-1,0,0,0),//row check direction in left
+            C=func(a,x,row,col,0,1,0,0), //column check in direction of positive y
+            D=func(a,x,row,col,0,-1,0,0),//column check in direction of negative y
+            E=func(a,x,row,col,1,1,0,0), //diagonally northeast
+            F=func(a,x,row,col,-1,-1,0,0), //diagonally south-west
+            G=func(a,x,row,col,1,-1,0,0), //diagonally south-east
+            H=func(a,x,row,col,-1,1,0,0); //diagonally north-west
             if((A==0&&B==0&&C==0&&D==0&&E==0&&F==0&&G==0&&H==0)){  //when all these conditions are returning 0, means no sandwich occurs and hence no flipping occurs
                                                                  //makes the move invalid
             printf("\033[31m");
@@ -213,17 +245,7 @@ int main() {
             }
 
         if(declare_result(a)==1){  //when declare result returns 1 means game has ended
-            printf("\033[0m");
-             printf("     1    2    3    4    5    6    7    8   \n");  //prints the final board
-         printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
-         for(int i=0;i<8;i++){
-            printf("%d ",i+1);
-        for(int j=0;j<8;j++){
-            printf("| %c  ",a[i][j]);
-            }
-            printf("|\n");
-             printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
-        }
+           DisplayBoard(a);
             printf("\033[33m");
             printf("Would you like to end the game or restart?\n To RESTART press '1' to exit press '0': "); //for restart and exit
             int option;
@@ -255,17 +277,7 @@ int main() {
             }
         }
         if(!endgame(a,turn)){  //when the function endgame implements which means when all the boxes are occupied by either x or o
-            printf("\033[0m");
-              printf("     1    2    3    4    5    6    7    8   \n");
-         printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
-         for(int i=0;i<8;i++){
-            printf("%d ",i+1);
-        for(int j=0;j<8;j++){
-            printf("| %c  ",a[i][j]);
-            }
-            printf("|\n");
-             printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
-        }
+           DisplayBoard(a);
             printf("\033[33m");
             printf("There is no possible chance for them to play. Therefore, the game ends.\n would you like to end the game or restart?\n To RESTART press '1' to exit press '0' : ");
             int option;
@@ -307,8 +319,8 @@ int main() {
         for(int m=0;m<8;m++){
             for(int n=0;n<8;n++){
             if(a[m][n]==' '){
-            if(func(a,x,m,n,1,0,1)==1||func(a,x,m,n,-1,0,1)==1||func(a,x,m,n,0,1,1)==1||func(a,x,m,n,0,-1,1)==1||func(a,x,m,n,1,1,1)==1||
-            func(a,x,m,n,1,-1,1)==1||func(a,x,m,n,-1,-1,1)==1||func(a,x,m,n,-1,1,1)==1){
+            if(func(a,x,m,n,1,0,1,0)==1||func(a,x,m,n,-1,0,1,0)==1||func(a,x,m,n,0,1,1,0)==1||func(a,x,m,n,0,-1,1,0)==1||func(a,x,m,n,1,1,1,0)==1||
+            func(a,x,m,n,1,-1,1,0)==1||func(a,x,m,n,-1,-1,1,0)==1||func(a,x,m,n,-1,1,1,0)==1){
                   s=1;
                   break;
             }
@@ -324,8 +336,8 @@ int main() {
         for(int m=0;m<8;m++){  //checks if there is no nearby surrounding slots which can be occupied to flip the other
             for(int n=0;n<8;n++){
             if(a[m][n]==' '){
-            if(func(a,y,m,n,1,0,1)==1||func(a,y,m,n,-1,0,1)==1||func(a,y,m,n,0,1,1)==1||func(a,y,m,n,0,-1,1)==1||func(a,y,m,n,1,1,1)==1||
-            func(a,y,m,n,1,-1,1)==1||func(a,y,m,n,-1,-1,1)==1||func(a,y,m,n,-1,1,1)==1){
+            if(func(a,y,m,n,1,0,1,0)==1||func(a,y,m,n,-1,0,1,0)==1||func(a,y,m,n,0,1,1,0)==1||func(a,y,m,n,0,-1,1,0)==1||func(a,y,m,n,1,1,1,0)==1||
+            func(a,y,m,n,1,-1,1,0)==1||func(a,y,m,n,-1,-1,1,0)==1||func(a,y,m,n,-1,1,1,0)==1){
                   t=1;
                   break;
             }
@@ -333,17 +345,7 @@ int main() {
             }
         }
         if(s==0&&t==0){ //neither of them is able to sandwich anything, game ends
-            printf("\033[0m");
-            printf("     1    2    3    4    5    6    7    8   \n");
-         printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
-         for(int i=0;i<8;i++){
-            printf("%d ",i+1);
-        for(int j=0;j<8;j++){
-            printf("| %c  ",a[i][j]);
-            }
-            printf("|\n");
-             printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
-        }
+            DisplayBoard(a);
             printf("\033[33m");
             printf("There is no possible chance for them to play. Therefore, the game ends.\n would you like to end the game or restart?\n To RESTART press '1' to exit press '0': ");
             int option;//option is for restart or exit
@@ -362,17 +364,7 @@ int main() {
         else if(s==0){ //when s==0 then the respective has no move to paly and hence needs to pass his turn
             printf("\033[33m");
                 printf("\nPlayer %c has no valid moves and needs to pass \n",x);
-                 printf("\033[0m");
-                 printf("     1    2    3    4    5    6    7    8   \n");
-         printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
-         for(int i=0;i<8;i++){
-            printf("%d ",i+1);
-        for(int j=0;j<8;j++){
-            printf("| %c  ",a[i][j]);
-            }
-            printf("|\n");
-             printf("   ---- ---- ---- ---- ---- ---- ---- ----  \n");
-        }
+                DisplayBoard(a);
          printf("Press 1 to pass : "); //2 passes the turn to next player
         int pass;
         scanf("%d",&pass );

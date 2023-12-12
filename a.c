@@ -1,28 +1,41 @@
 #include<stdio.h>
+
 int main(){
-    int i,j;
-    scanf("%d%d",&i,&j);
-    int arr[i][j];
-    printf("for matrix 1:\n");
-    for(int k=0;k<i;k++){
-        printf("write elements of row %d :",k+1);
-        for(int l=0;l<j;l++){
-            scanf("%d",&arr[k][l]);
-        }
+   /* int n,m,a,b;
+    scanf("%d %d %d %d",&n,&m,&a,&b);
+    if(m*a>=b){
+    printf("%d",((n/m)*b)+((n%m)*a));
+    return 0;
     }
-    int ar2[i][j];
-     printf("for matrix 2:\n");
-    for(int k=0;k<i;k++){
-        printf("write elements of row %d :",k+1);
-        for(int l=0;l<j;l++){
-            scanf("%d",&ar2[k][l]);
-        }
+    else{
+      printf("%d",m*a);
     }
-    for(int k=0;k<i;k++){
-        for(int l=0;l<j;l++){
-               printf("%d ",arr[k][l]+ar2[k][l]);
-        }
-         printf("\n");
-    }
+    */
+   int n,a,b;
+   scanf("%d %d %d",&n,&a,&b);
+   int rem=(6*n)-(a*b);
+   if(rem<=0){
+      printf("%d \n%d %d",a*b,a,b);
+   }
+   else{
+      int x,y;
+      if(a<=6&&b<=n){
+      x=6;
+      y=n;
+      }
+      else if(b<=6&&a<=n){
+         y=6;
+         x=n;
+      }
+      else{
+         for(int i=a+1;i<6*n;i++){
+           if((6*n)%i==0){
+             x=i;
+             y=(6*n)/i;
+           }
+         }
+      }
+            printf("%d \n%d %d",6*n,x,y);
+   }
     return 0;
 }
