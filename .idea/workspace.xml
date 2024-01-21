@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fb503182-1778-4dbc-be9a-59b79354bc1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/LAB REPORT 7(B23CS1045).docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OTHELLO.c" beforeDir="false" afterPath="$PROJECT_DIR$/OTHELLO.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OTHELLO.exe" beforeDir="false" afterPath="$PROJECT_DIR$/OTHELLO.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.c" beforeDir="false" afterPath="$PROJECT_DIR$/a.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/a.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contset_day1.c" beforeDir="false" afterPath="$PROJECT_DIR$/contset_day1.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contset_day1.exe" beforeDir="false" afterPath="$PROJECT_DIR$/contset_day1.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency.c" beforeDir="false" afterPath="$PROJECT_DIR$/currency.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency.txt" beforeDir="false" afterPath="$PROJECT_DIR$/currency.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file.c" beforeDir="false" afterPath="$PROJECT_DIR$/file.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file.exe" beforeDir="false" afterPath="$PROJECT_DIR$/file.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/max.c" beforeDir="false" afterPath="$PROJECT_DIR$/max.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/max.exe" beforeDir="false" afterPath="$PROJECT_DIR$/max.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/q3.c" beforeDir="false" afterPath="$PROJECT_DIR$/q3.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/q3.exe" beforeDir="false" afterPath="$PROJECT_DIR$/q3.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rec.c" beforeDir="false" afterPath="$PROJECT_DIR$/rec.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rec.exe" beforeDir="false" afterPath="$PROJECT_DIR$/rec.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tempCodeRunnerFile.c" beforeDir="false" afterPath="$PROJECT_DIR$/tempCodeRunnerFile.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tempCodeRunnerFile.exe" beforeDir="false" afterPath="$PROJECT_DIR$/tempCodeRunnerFile.exe" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="2" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2aDxm2nwpqGcxP0eFuChiNPCMQu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb503182-1778-4dbc-be9a-59b79354bc1e" name="Changes" comment="" />
+      <created>1703867108930</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1703867108930</updated>
+      <workItem from="1703867114904" duration="24000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -1,41 +1,64 @@
 #include<stdio.h>
-
-int main(){
-   /* int n,m,a,b;
-    scanf("%d %d %d %d",&n,&m,&a,&b);
-    if(m*a>=b){
-    printf("%d",((n/m)*b)+((n%m)*a));
-    return 0;
-    }
-    else{
-      printf("%d",m*a);
-    }
-    */
-   int n,a,b;
-   scanf("%d %d %d",&n,&a,&b);
-   int rem=(6*n)-(a*b);
-   if(rem<=0){
-      printf("%d \n%d %d",a*b,a,b);
+#include<string.h>
+int func(int k,int n,int arr[n]){
+   long long int a,b;
+   for(int i=n;i<=k;i++){
+      int m=1;
+      for(int j=1;j<=i;j++){
+         m*=10;
+      }
+      a+=arr[i]*m;
+   }
+    for(int i=k+1;i<8;i++){
+      int m=1;
+      for(int j=1;j<=i-k-1;j++){
+         m*=10;
+      }
+      b+=arr[i]*m;
+   }
+   if(a<b){
+      printf("%d %d",a,b);
+   return 1;
    }
    else{
-      int x,y;
-      if(a<=6&&b<=n){
-      x=6;
-      y=n;
-      }
-      else if(b<=6&&a<=n){
-         y=6;
-         x=n;
-      }
-      else{
-         for(int i=a+1;i<6*n;i++){
-           if((6*n)%i==0){
-             x=i;
-             y=(6*n)/i;
-           }
-         }
-      }
-            printf("%d \n%d %d",6*n,x,y);
+      return 0;
    }
+}
+void swap(long long int *a,long long int *b){
+   long long int temp=*b;
+   *b=*a;
+   *a=temp;
+} 
+int main(){
+   int t;
+   scanf("%d",&t);
+  for(int I=0;I<t;I++){
+  long long int n;
+  scanf("%lli",&n);
+  int j=7,k;
+  int y;
+  int arr[8];
+  while(n>0){
+   arr[j]=n%10;
+   n/=10;
+   j--;
+  }
+  for(k=j+1;k<8;k++){
+   if(arr[k]==0&&arr[k+1]!=0){
+      if(func(k,j+1,arr)==1){
+         break;
+      }
+   }
+   if(arr[k]!=0&&arr[k+1]!=0){
+      if(func(k,j+1,arr)==1){
+         printf("\n");
+         break;
+      }
+   }
+  }
+  if(k==8){
+   printf("-1\n");
+  }
+  }
     return 0;
 }

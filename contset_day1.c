@@ -1,27 +1,37 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<math.h>
-
-int main(){
-int q;
-scanf("%d",&q);
-long long int no=0;
-while(q>0){
-    no=no+5;
-    for(int i=no;i>=1;i--){
-        long long int m=pow(5,i);
-        if(no%m==0){
-            q=q-i;
-            break;
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main() {
+    int t;
+    scanf("%d", &t);
+ 
+    while (t--) {
+      int n;
+      scanf("%d",&n);
+      char s1[n+1];
+      char s2[n+1];
+      scanf("%s",s1);
+      scanf("%s",s2);
+      int t01=0,t10=0;
+      for(int i=0;i<n;i++){
+        if(s1[i]=='0'&&s2[i]=='1'){
+            t01++;
         }
+        if(s1[i]=='1'&&s2[i]=='0'){
+            t10++;
+        }
+      }
+      if(t01==0&&t10==0){
+        printf("0\n");
+        continue;
+      }
+      if(t01>=t10){
+        printf("%d\n",t01);
+      }
+      if(t10>t01){
+        printf("%d\n",t10);
+      }
     }
-}
-if(q!=0){
-    printf("No solution");
-    return 0;
-}
-printf("%lli",no);
-
+ 
     return 0;
 }
